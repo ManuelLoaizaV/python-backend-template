@@ -5,6 +5,7 @@
 1. Is domain.ports neccesary?
 2. Classes or functions on repository/service?
 3. Simplify implementation examples
+4. How to test Third-Party services?
 
 
 ## Setup
