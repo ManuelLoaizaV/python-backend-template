@@ -73,6 +73,25 @@ Once the application is running, the API will be available at the following link
 - **Interactive docs**: http://localhost:8000/docs
 - **OpenAPI spec**: http://localhost:8000/openapi.json
 
+### Third-party integration example (Google Gemini)
+
+This template includes a modular external-service integration for user name generation.
+The integration is isolated behind a domain port (`UserNameGenerator`) and can be replaced
+without changing `UserService` or repository logic.
+
+Configure the integration with environment variables:
+
+- `GEMINI_API_KEY`: your Google AI Studio API key.
+- `GEMINI_MODEL`: model name (default: `gemini-2.0-flash`).
+
+Create a user using generated data:
+
+```bash
+$ curl -X POST http://localhost:8000/users/generate \
+  -H "Content-Type: application/json" \
+  -d '{"purpose":"marketing campaign"}'
+```
+
 ## Code conventions
 
 Ensure your code follows these conventions before committing:

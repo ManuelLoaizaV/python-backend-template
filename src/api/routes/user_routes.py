@@ -1,9 +1,12 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from src.api.dependencies.db import get_db
-from src.api.schemas.user_schemas import UserCreate, UserRead
+from src.api.dependencies.third_party import get_user_name_generator
+from src.api.schemas.user_schemas import UserCreate, UserGenerate, UserRead
 from src.data.repositories.user_repository import UserRepository
+from src.domain.exceptions.third_party import ThirdPartyIntegrationError
+from src.domain.ports.user_name_generator import UserNameGenerator
 from src.domain.services.user_service import UserService
 
 router = APIRouter()
@@ -25,4 +28,21 @@ def list_users(
 def create_user(payload: UserCreate, db: Session = Depends(get_db)) -> UserRead:
     service = UserService(UserRepository(db))
     user = service.create_user(name=payload.name)
+    return UserRead(id=user.id, name=user.name)
+
+
+@router.post("/generate", response_model=UserRead, status_code=201)
+def generate_user(
+    payload: UserGenerate,
+    db: Session = Depends(get_db),
+    generator: UserNameGenerator = Depends(get_user_name_generator),
+) -> UserRead:
+    service = UserService(UserRepository(db))
+    try:
+        user = service.create_generated_user(generator, purpose=payload.purpose)
+    except ThirdPartyIntegrationError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="Failed to generate user name from third-party service",
+        ) from exc
     return UserRead(id=user.id, name=user.name)
