@@ -15,3 +15,8 @@
 3. Update `app.py` lifecycle so startup does not auto-create tables when using migrations.
 4. Configure test database strategy explicitly for migrations + isolated tests.
 5. Add Docker Compose for Postgres + Redis and test configuration. Maybe ```make test-full``` or ```make test-pytest```?
+
+
+## Documentation ?
+
+1. Maybe a document to explain the workflow? What purpose each directory has?
