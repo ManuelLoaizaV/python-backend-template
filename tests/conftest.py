@@ -16,14 +16,14 @@ def client() -> Generator[TestClient, None, None]:
     engine_kwargs = {}
     if settings.test_database_url.startswith("sqlite"):
         engine_kwargs["poolclass"] = StaticPool
-    
+
     engine = create_engine(
         settings.test_database_url,
         connect_args=_sqlite_connect_args(settings.test_database_url),
-        **engine_kwargs
+        **engine_kwargs,
     )
     testing_session_local = sessionmaker(bind=engine, autoflush=False, autocommit=False)
-    
+
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
 
