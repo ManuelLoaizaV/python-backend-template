@@ -3,7 +3,7 @@ from typing import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
-from src.infrastructure.config import settings
+from infrastructure.config import settings
 
 
 class Base(DeclarativeBase):
@@ -32,6 +32,6 @@ def get_db() -> Generator[Session, None, None]:
 
 
 def create_tables() -> None:
-    from src.data.models.user_model import UserModel
+    from data.models.user_model import UserModel
 
     Base.metadata.create_all(bind=engine)

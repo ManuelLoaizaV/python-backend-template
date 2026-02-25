@@ -1,3 +1,3 @@
-from src.infrastructure.database import get_db
+from infrastructure.database import get_db
 
 __all__ = ["get_db"]

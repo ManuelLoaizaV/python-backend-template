@@ -1,6 +1,6 @@
-from src.domain.entities.user import UserEntity
-from src.domain.ports.user_name_generator import UserNameGenerator
-from src.domain.ports.user_repository import UserRepository
+from domain.entities.user import UserEntity
+from domain.ports.user_name_generator import UserNameGenerator
+from domain.ports.user_repository import UserRepository
 
 
 class UserService:

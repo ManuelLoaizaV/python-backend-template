@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
-from src.api.dependencies.db import get_db
-from src.api.dependencies.third_party import get_user_name_generator
-from src.api.schemas.user_schemas import UserCreate, UserGenerate, UserData
-from src.data.repositories.user_repository import UserRepository
-from src.domain.exceptions.third_party import ThirdPartyIntegrationError
-from src.domain.ports.user_name_generator import UserNameGenerator
-from src.domain.services.user_service import UserService
+from api.dependencies.db import get_db
+from api.dependencies.third_party import get_user_name_generator
+from api.schemas.user_schemas import UserCreate, UserGenerate, UserData
+from data.repositories.user_repository import UserRepository
+from domain.exceptions.third_party import ThirdPartyIntegrationError
+from domain.ports.user_name_generator import UserNameGenerator
+from domain.services.user_service import UserService
 
 router = APIRouter()
 

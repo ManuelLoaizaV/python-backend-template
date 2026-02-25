@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
-from src.domain.exceptions.third_party import ThirdPartyIntegrationError
-from src.domain.ports.user_name_generator import UserNameGenerator
-from src.domain.third_party.gemini_service import GeminiService
+from domain.exceptions.third_party import ThirdPartyIntegrationError
+from domain.ports.user_name_generator import UserNameGenerator
+from domain.third_party.gemini_service import GeminiService
 
 
 class GeneratedNameResponse(BaseModel):

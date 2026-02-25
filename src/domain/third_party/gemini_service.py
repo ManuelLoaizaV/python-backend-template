@@ -4,7 +4,7 @@ from google import genai
 from google.genai import types
 from pydantic import BaseModel, ValidationError
 
-from src.domain.exceptions.third_party import ThirdPartyIntegrationError
+from domain.exceptions.third_party import ThirdPartyIntegrationError
 
 SchemaModel = TypeVar("SchemaModel", bound=BaseModel)
 
