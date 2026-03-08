@@ -1,12 +1,16 @@
-FROM python:3.12-slim
+FROM python:3.14
+COPY --from=ghcr.io/astral-sh/uv:0.10.9 /uv /uvx /bin/
 
 WORKDIR /app
 
-COPY pyproject.toml README.md ./
 COPY src ./src
+COPY pyproject.toml ./
 
-RUN pip install --no-cache-dir .
+ENV PYTHONPATH=/app/src
 
-EXPOSE 8000
+RUN uv sync
 
+EXPOSE 8000/tcp
+
+ENTRYPOINT ["uv", "run"]
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
