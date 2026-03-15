@@ -1,9 +1,8 @@
 # Python Backend Template
 
 ## Prerequisites
-- Python 3.12+.
-- Docker and Docker Compose.
 - uv: modern Python package manager.
+- Docker: engine and compose plugins.
 - Visual Studio Code: editor (optional).
 
 ## Installation
@@ -16,8 +15,8 @@ $ cd python-backend-template
 
 Install [Visual Studio Code](https://code.visualstudio.com/Download) and the
 [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python),
-[Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance),
 [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff),
+[ty](https://marketplace.visualstudio.com/items?itemName=astral-sh.ty),
 and [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) extensions.
 
 Setup the `.vscode/settings.json` file with the contents of the `.vscode/settings.json.example` file.
