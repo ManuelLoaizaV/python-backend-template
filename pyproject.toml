@@ -40,6 +40,7 @@ exclude = [
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
+    "F",   # pyflakes
     "I",   # isort
     "UP",  # pyupgrade (modernizes syntax)
     "RUF", # ruff-specific rules
