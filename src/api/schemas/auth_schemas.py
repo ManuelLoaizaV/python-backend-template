@@ -7,7 +7,7 @@ from api.schemas.examples import Examples
 
 class RegisterRequest(BaseModel):
     username: str = Field(
-        description="A unique identifier for the user.",
+        description="A unique and human-readable handle used for identification.",
         min_length=1,
         max_length=32,
         example=Examples.USERNAME,
