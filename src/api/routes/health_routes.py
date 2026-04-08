@@ -1,12 +1,12 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Response, status
 
-router = APIRouter()
+health_router = APIRouter()
 
 
-@router.get(
+@health_router.get(
     path="/",
-    status_code=status.HTTP_200_OK,
+    status_code=status.HTTP_204_NO_CONTENT,
+    response_class=Response,
 )
-async def health_check() -> dict[str, str]:
+async def health_check() -> None:
     """Check the operational health of the application."""
-    return {"status": "healthy"}
