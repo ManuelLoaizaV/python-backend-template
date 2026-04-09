@@ -10,15 +10,15 @@ class Settings(BaseSettings):
     APP_NAME: str = "PythonBackendTemplate"
     ENVIRONMENT: str = "development"
 
-    POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "postgres"
-    POSTGRES_HOST: str = "localhost"
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str = ""
+    POSTGRES_HOST: str
     POSTGRES_PORT: int = 5432
-    POSTGRES_DB: str = "db"
+    POSTGRES_DB: str
 
     @computed_field
     @property
-    def postgres_database_url(self) -> PostgresDsn:
+    def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
         return PostgresDsn.build(
             scheme="postgresql+psycopg",
             username=self.POSTGRES_USER,
@@ -29,4 +29,6 @@ class Settings(BaseSettings):
         )
 
 
-settings = Settings()
+# Workaround: satisfy static type checkers for Settings defaults.
+# See https://github.com/pydantic/pydantic/issues/3753
+settings = Settings.model_validate({})
