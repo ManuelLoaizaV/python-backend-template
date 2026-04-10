@@ -6,7 +6,6 @@ from api.dependencies.error_handlers import domain_exception_handler
 from api.router import router as v1_router
 from domain.exceptions.base import BaseDomainError
 from infrastructure.config import settings
-from infrastructure.postgres import engine
 
 
 def create_app() -> FastAPI:
@@ -18,7 +17,7 @@ def create_app() -> FastAPI:
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    from data.models.base import Base
-
-    Base.metadata.create_all(engine)
+    # We trust our migrations explicitly!
+    # from data.models.base import Base
+    # Base.metadata.create_all(engine)
     yield

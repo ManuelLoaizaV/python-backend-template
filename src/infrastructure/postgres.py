@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from infrastructure.config import settings
 
-engine = create_engine(url=str(settings.postgres_database_url))
+engine = create_engine(url=str(settings.SQLALCHEMY_DATABASE_URI))
 
 
 def get_session() -> Generator[Session]:

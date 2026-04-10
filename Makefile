@@ -13,3 +13,10 @@ stop-all:
 
 logs:
 	docker compose logs -f backend
+
+# Usage: make migration message="add users table"
+migration:
+	docker compose exec backend uv run alembic revision --autogenerate -m "$(message)"
+
+migrate:
+	docker compose exec backend uv run alembic upgrade head

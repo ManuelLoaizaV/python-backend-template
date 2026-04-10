@@ -4,6 +4,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.10.9 /uv /uvx /bin/
 WORKDIR /app
 
 COPY src ./src
+COPY alembic.ini ./
 COPY pyproject.toml ./
 COPY uv.lock ./
 
