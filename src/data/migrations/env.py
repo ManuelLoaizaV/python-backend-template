@@ -19,14 +19,14 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-from src.data.models.base import Base
+from data.models.base import Base
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-from src.infrastructure.config import settings
+from infrastructure.config import settings
 def get_url() -> str:
     return str(settings.SQLALCHEMY_DATABASE_URI)
 
