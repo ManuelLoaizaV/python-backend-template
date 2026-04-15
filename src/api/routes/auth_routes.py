@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.schemas.auth_schemas import RegisterRequest
 from api.schemas.user_schemas import UserResponse
@@ -17,8 +17,8 @@ auth_router = APIRouter()
 )
 async def register_user(
     register_request: RegisterRequest,
-    db: Annotated[Session, Depends(get_session)],
+    db: Annotated[AsyncSession, Depends(get_session)],
 ) -> UserResponse:
     """Register a new user account."""
-    registered_user = auth_service.register_user(**register_request.model_dump(), db=db)
+    registered_user = await auth_service.register_user(**register_request.model_dump(), db=db)
     return UserResponse(**registered_user.model_dump())
