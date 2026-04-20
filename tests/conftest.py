@@ -26,15 +26,15 @@ async def setup_database() -> AsyncGenerator[None]:
 
 
 @pytest.fixture
-async def db_session() -> AsyncGenerator[AsyncSession]:
+async def db() -> AsyncGenerator[AsyncSession]:
     async with async_session() as session, session.begin():
         yield session
 
 
 @pytest.fixture
-async def client(db_session: AsyncSession) -> AsyncGenerator[AsyncClient]:
+async def client(db: AsyncSession) -> AsyncGenerator[AsyncClient]:
     async def override_get_session() -> AsyncGenerator[AsyncSession]:
-        yield db_session
+        yield db
 
     app.dependency_overrides[get_session] = override_get_session
 
