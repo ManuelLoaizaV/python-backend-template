@@ -14,6 +14,11 @@ stop-all:
 logs:
 	docker compose logs -f backend
 
+test:
+	docker compose up -d postgres-test
+	docker compose run --rm backend uv run pytest tests
+	docker compose stop postgres-test
+
 # Usage: make migration message="add users table"
 migration:
 	docker compose exec backend uv run alembic revision --autogenerate -m "$(message)"
